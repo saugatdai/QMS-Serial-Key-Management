@@ -1,0 +1,88 @@
+:root{
+    --lemon-color: #5F8A27;
+    --light-lemon-color: #A9D66D;
+    --light-blue-color: #4268D6;
+    --love-color: #D67158;
+    --dark-blue-color: #1D388A;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-size: 16px;
+    height: 100vh;
+    padding: .2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+h1{
+    color: var(--lemon-color);
+    font-size: 25px;
+    margin-bottom: 1rem;
+}
+
+form{
+    border: 2px solid var(--love-color);
+    padding: 1.2rem;
+    border-radius: 10px;
+    margin-bottom: 1.2rem;
+}
+
+form input{
+    border: 0;
+    border-left: 1px solid #ccc;
+    padding: .5rem;
+    width: 65%;
+}
+
+.formfield{
+    border: 1px solid #ccc;
+    padding: 0 .5rem 0 .5rem;
+    margin: .2rem 0 .2rem 0;
+}
+
+.input-icon{
+    color: var(--lemon-color);
+}
+
+button{
+    color: #fff;
+    background: var(--dark-blue-color);
+    border: 0;
+    padding: .5rem;
+    border-radius: 5px;
+}
+.displayBoard{
+    padding: 1.2rem;
+    display: none;
+    border-radius: 5px;
+}
+
+.errorDisplay{
+    display: block;
+    background: var(--love-color);
+}
+
+.successDisplay{
+    display: block;
+    background: var(--lemon-color);
+}
+
+@media screen and (min-width: 800px){
+    .mainContainer{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .formContainer{
+        margin: 0 .1rem;
+        flex: 1 1 calc(40% - 2em);
+    }
+}
