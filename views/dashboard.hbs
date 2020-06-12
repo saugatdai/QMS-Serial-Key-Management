@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Your Serials</h1>
+    <ol>
+        {{#each serials}}
+        <li>this.client</li>
+        {{/each}}
+    </ol>
+    <h2>Add a Serial</h2>
+    <form>
+        <div class="formfield">
+            <label for="email">Email <i class="fas fa-envelope input-icon"></i></label>
+            <input type="email" name="email" id="email" required>
+        </div>
+    </form>
+</body>
+
+</html>

@@ -32,10 +32,12 @@ async function loginFormSubmitted(event) {
             body: JSON.stringify({ email: emailValue, password: passwordValue })
         });
         const data = await response.json();
-        data.success ? writeMessage("Request successful", "successDisplay") :
-            writeMessage("Request Failed", "errorDisplay");
+        console.log(window.location);
+        data.success ? window.location.replace(`${window.location.protocol}//${window.location.host}/dashboard`) :
+            writeMessage(data.error, "errorDisplay");
+        
     } catch (error) {
-        writeMessage("Request failed at the front", "errorDisplay")
+        writeMessage("Request failed at the front" + error, "errorDisplay")
     }
 }
 
@@ -43,7 +45,7 @@ async function loginFormSubmitted(event) {
 async function registrationFormSubmitted(event) {
     event.preventDefault();
     const formData = new FormData(this);
-    const [[name, nameValue], [password, passwordValue], [email, emailValue], [confirm, confirmValue]] = [...formData];
+    const [[name, nameValue], [email, emailValue], [mobile, mobileValue],[password, passwordValue], [confirm, confirmValue]] = [...formData];
     try {
         const response = await fetch('/register', {
             method: 'POST',
@@ -51,11 +53,12 @@ async function registrationFormSubmitted(event) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: nameValue, email: emailValue, password: passwordValue, confirm: confirmValue })
+            body: JSON.stringify({ name: nameValue, email: emailValue,mobile: mobileValue, password: passwordValue, confirm: confirmValue })
         });
         const data = await response.json();
-        data.success ? writeMessage("Request successful", "successDisplay") :
-            writeMessage("Request Failed", "errorDisplay");
+        console.log(data);
+        data.success ? writeMessage(data.success, "successDisplay") :
+            writeMessage(data.error, "errorDisplay");
     } catch (error) {
         writeMessage("Request failed at the front", "errorDisplay")
     }
