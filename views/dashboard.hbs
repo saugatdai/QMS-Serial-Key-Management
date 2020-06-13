@@ -1,27 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <title>Document</title>
-</head>
+{{> header}}
 
 <body>
     <h1>Your Serials</h1>
-    <ol>
+    <div class="serialsContainer">
         {{#each serials}}
-        <li>this.client</li>
-        {{/each}}
-    </ol>
-    <h2>Add a Serial</h2>
-    <form>
-        <div class="formfield">
-            <label for="email">Email <i class="fas fa-envelope input-icon"></i></label>
-            <input type="email" name="email" id="email" required>
-        </div>
-    </form>
-</body>
+        <div class="serials">
+            <div class="item"><span class="label">ID</span> : {{this.id}}</div>
+            <div class="item"><span class="label">Client</span> : {{this.client}}</div>
+            <div class="item"><span class="label">Serial</span> : {{this.serial}}</div>
+            <div class="item"><span class="label">Macs</span> : {{this.macs}}</div>
 
-</html>
+        </div>
+        {{/each}}
+    </div>
+
+
+    <section class="formContainer-full">
+        <h1>Add a Serial</h1>
+        <form id="serial-form">
+            <div class="formfield">
+                <label for="serial">Key <i class="fas fa-key input-icon"></i></label>
+                <input type="serial" name="serial" id="serial" required readonly value={{serial}}>
+            </div>
+            <div class="formfield">
+                <label for="client">client <i class="fas fa-building input-icon"></i></label>
+                <input type="text" name="client" id="client" required>
+            </div>
+            <button>Add Serial</button>
+        </form>
+    </section>
+    <section id="flash-message" class="information-board">
+        <p>Some dummy Information</p>
+    </section>
+    <script src="scripts/dashboard.js"></script>
+    {{> footer}}

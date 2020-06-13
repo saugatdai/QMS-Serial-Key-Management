@@ -56,7 +56,6 @@ async function registrationFormSubmitted(event) {
             body: JSON.stringify({ name: nameValue, email: emailValue,mobile: mobileValue, password: passwordValue, confirm: confirmValue })
         });
         const data = await response.json();
-        console.log(data);
         data.success ? writeMessage(data.success, "successDisplay") :
             writeMessage(data.error, "errorDisplay");
     } catch (error) {

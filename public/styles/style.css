@@ -13,12 +13,14 @@
 }
 
 body{
+    font-family: 'MuseoModerno', cursive;
     font-size: 16px;
     height: 100vh;
     padding: .2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
 }
 
 h1{
@@ -38,7 +40,7 @@ form input{
     border: 0;
     border-left: 1px solid #ccc;
     padding: .5rem;
-    width: 65%;
+    width: 60%;
 }
 
 .formfield{
@@ -85,4 +87,44 @@ button{
         margin: 0 .1rem;
         flex: 1 1 calc(40% - 2em);
     }
+    .formContainer-full{
+        margin: 0 .1rem;
+        width: 100%;
+    }
+}
+
+.information-board{
+    position: fixed;
+    height: 40%;
+    width: 50%;
+    left: 25%;
+    top: 30%;
+    background: var(--light-blue-color);
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 3rem;
+    border-radius: 20px;
+    display: none;
+}
+
+.information-visible{
+    display: block;
+}
+.serialsContainer{
+    width: 80%;
+    height: 50vh;
+    overflow: auto;
+}
+
+.serials{
+    background: #bbb;
+    width: 100%;
+    padding: .3rem;
+    margin: .3rem 0;
+    color: #444;
+    font-family: 'Roboto', sans-serif;
+}
+.serials .label{
+    font-weight: bold;
 }

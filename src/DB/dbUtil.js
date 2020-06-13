@@ -98,8 +98,7 @@ const login = async (req, res) => {
 }
 
 const getSerials = (user, callback) => {
-    const sql = 'select * from `serials` where marketer=?';
-
+    const sql = 'select * from `serials` where `marketer`=?';
     db.query(sql,[user.id],(error, results, fields) => {
         if(error){
             console.log(error);
@@ -109,6 +108,27 @@ const getSerials = (user, callback) => {
     })
 }
 
-module.exports = { insertData, validateData, login, getSerials };
+const putSerial = ({serial, client, marketer},callback) => {
+    // first check if the serial already exists 
+    db.query("select * from `serials` where `serial`=?", [serial], (error, results, fields) => {
+        if(error){
+            console.log(error);
+        }else if(results.length !== 0){
+            callback("serial already used please try another", null);
+        }else{
+            //  insert the serial in database
+            const sql = "insert into `serials` (`serial`, `client`, `marketer`) values(?,?,?)";
+            db.query(sql, [serial,client,marketer], (error,results,fields) => {
+                if(error){
+                    console.log(error)
+                }else{
+                    callback(null,"serial inserted successfully");
+                }
+            });
+        }
+    });
+}
+
+module.exports = { insertData, validateData, login, getSerials, putSerial };
 
 
