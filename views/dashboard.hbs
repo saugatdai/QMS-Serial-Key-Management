@@ -8,7 +8,11 @@
             <div class="item"><span class="label">ID</span> : {{this.id}}</div>
             <div class="item"><span class="label">Client</span> : {{this.client}}</div>
             <div class="item"><span class="label">Serial</span> : {{this.serial}}</div>
-            <div class="item"><span class="label">Macs</span> : {{this.macs}}</div>
+            <div class="item"><span class="label">Macs</span> : 
+                {{#each this.macs}}
+                    [{{this.mac}}] 
+                {{/each}}
+            </div>
 
         </div>
         {{/each}}
@@ -23,7 +27,7 @@
                 <input type="serial" name="serial" id="serial" required readonly value={{serial}}>
             </div>
             <div class="formfield">
-                <label for="client">client <i class="fas fa-building input-icon"></i></label>
+                <label for="client">Client <i class="fas fa-building input-icon"></i></label>
                 <input type="text" name="client" id="client" required>
             </div>
             <button>Add Serial</button>

@@ -5,7 +5,7 @@ const hbs = require('hbs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
-const { validateData, insertData, login, getSerials, putSerial } = require('./DB/dbUtil');
+const { validateData, insertData, login, getSerials, putSerial, registerMac, checkForRegistration } = require('./DB/dbUtil');
 
 dotenv.config({ path: './.env' });
 
@@ -40,12 +40,11 @@ app.get('/', async (req, res) => {
 
 app.post('/login', login);
 
-app.get('/dashboard', (req, res) => {
-
+app.get('/dashboard', async (req, res) => {
     if (!req.session.user) {
         res.render('operation', { title: "Qms Serial" });
     } else {
-        getSerials(req.session.user, (serials) => {
+        await getSerials(req.session.user, (serials) => {
             res.render('dashboard', { serials: serials, title: "Dashboard", serial: uuidv4() });
         });
     }
@@ -67,6 +66,25 @@ app.post('/addserial', (req, res) => {
     }
 });
 
+app.post('/registermac', (req,res) => {
+    registerMac({...req.body}, (error, message) =>{
+        if (error){
+            res.send({error: error});
+        }else{
+            res.send({success: message});
+        }
+    })
+});
+
+app.post('/recoverlicense', (req,res)=>{
+    checkForRegistration({...req.body}, (error,success) => {
+        if(error){
+            res.send({error});
+        }else{
+            res.send({success});
+        }
+    })
+});
 
 
 app.listen(port, () => {
