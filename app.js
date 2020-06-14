@@ -5,11 +5,11 @@ const hbs = require('hbs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
-const { validateData, insertData, login, getSerials, putSerial, registerMac, checkForRegistration } = require('./DB/dbUtil');
+const { validateData, insertData, login, getSerials, putSerial, registerMac, checkForRegistration } = require('./src/DB/dbUtil');
 
 dotenv.config({ path: './.env' });
 
-const port = 3000 || process.env.port;
+const port = process.env.port || 3000;
 const app = express();
 
 app.use(express.static('./public'));
@@ -61,27 +61,27 @@ app.post('/addserial', (req, res) => {
                 res.send({ success: message });
             }
         });
-    }else{
-        res.send({error: "Not Logged in"});
+    } else {
+        res.send({ error: "Not Logged in" });
     }
 });
 
-app.post('/registermac', (req,res) => {
-    registerMac({...req.body}, (error, message) =>{
-        if (error){
-            res.send({error: error});
-        }else{
-            res.send({success: message});
+app.post('/registermac', (req, res) => {
+    registerMac({ ...req.body }, (error, message) => {
+        if (error) {
+            res.send({ error: error });
+        } else {
+            res.send({ success: message });
         }
     })
 });
 
-app.post('/recoverlicense', (req,res)=>{
-    checkForRegistration({...req.body}, (error,success) => {
-        if(error){
-            res.send({error});
-        }else{
-            res.send({success});
+app.post('/recoverlicense', (req, res) => {
+    checkForRegistration({ ...req.body }, (error, success) => {
+        if (error) {
+            res.send({ error });
+        } else {
+            res.send({ success });
         }
     })
 });
